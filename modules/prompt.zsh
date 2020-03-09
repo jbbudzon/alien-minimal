@@ -17,6 +17,19 @@ version_prompt(){
   if [[ -n ${1} ]]; then
     LOOP_INDEX=0
     for _v in $(echo "${1}"); do
+      if [[ ${_v} == "PYENV" ]]; then
+        if [[ "$(am_pyenv_version)" != *"system"* ]]; then
+          [[ ${LOOP_INDEX} != "0" ]] && version_prompt_val+="%F{$AM_FADE_COLOR}${AM_VERSION_PROMPT_SEP}%f"
+          [[ ${LOOP_INDEX} == "0" ]] && LOOP_INDEX=$((LOOP_INDEX + 1)) && version_prompt_val+="%F{$AM_FADE_COLOR}[%f"
+          version_prompt_val+="$(am_pyenv_version)"
+        fi
+      elif [[ ${_v} == "RBENV" ]]; then
+        if [[ "$(am_rbenv_version)" != *"system"* ]]; then
+          [[ ${LOOP_INDEX} != "0" ]] && version_prompt_val+="%F{$AM_FADE_COLOR}${AM_VERSION_PROMPT_SEP}%f"
+          [[ ${LOOP_INDEX} == "0" ]] && LOOP_INDEX=$((LOOP_INDEX + 1)) && version_prompt_val+="%F{$AM_FADE_COLOR}[%f"
+          version_prompt_val+="$(am_rbenv_version)"
+        fi
+      else
       [[ ${LOOP_INDEX} != "0" ]] && version_prompt_val+="%F{$AM_FADE_COLOR}${AM_VERSION_PROMPT_SEP}%f"
       [[ ${LOOP_INDEX} == "0" ]] && LOOP_INDEX=$((LOOP_INDEX + 1)) && version_prompt_val+="%F{$AM_FADE_COLOR}[%f"
 
@@ -36,6 +49,7 @@ version_prompt(){
       [[ ${_v} == "NODE_S" ]]    && version_prompt_val+="$(am_node_short_version)"
       [[ ${_v} == "PHP" ]]       && version_prompt_val+="$(am_php_version)"
       [[ ${_v} == "PHP_S" ]]     && version_prompt_val+="$(am_php_short_version)"
+      fi
     done
 
     [[ "$LOOP_INDEX" != "0" ]] && version_prompt_val+="%F{$AM_FADE_COLOR}]%f"

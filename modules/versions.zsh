@@ -19,12 +19,20 @@ am_python_short_version(){
   echo -ne "%F{$AM_PYTHON_COLOR}${AM_PY_SYM}$(plib_python_major_minor_version)%f"
 }
 
+am_pyenv_version(){
+  echo -ne "%F{$AM_PYTHON_COLOR}${AM_PY_SYM}$(plib_pyenv_version)%f"
+}
+
 am_ruby_version(){
   echo -ne "%F{$AM_RUBY_COLOR}${AM_RB_SYM}$(plib_ruby_version)%f"
 }
 
 am_ruby_short_version(){
   echo -ne "%F{$AM_RUBY_COLOR}${AM_RB_SYM}$(plib_ruby_major_minor_version)%f"
+}
+
+am_rbenv_version(){
+  echo -ne "%F{$AM_RUBY_COLOR}${AM_RB_SYM}$(plib_rbenv_version)%f"
 }
 
 am_java_version(){
