@@ -82,3 +82,13 @@ am_php_version(){
 am_php_short_version(){
   echo -ne "%F{$AM_PHP_COLOR}${AM_PHP_SYM}$(plib_php_major_minor_version)%f"
 }
+
+am_xcenv_version(){
+  # note: xcenv doesnt handle system version-name very well
+  if [[ "$(xcenv version)" == *"set by system"* ]]; then
+    local VERSION="system"
+  else
+    local VERSION="$(basename $(xcenv version-name) | sed 's/\.app$//')"
+  fi
+  echo -ne "%F{$AM_XC_COLOR}${AM_XC_SYM}${VERSION}%f"
+}

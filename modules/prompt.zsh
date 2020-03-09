@@ -29,6 +29,12 @@ version_prompt(){
           [[ ${LOOP_INDEX} == "0" ]] && LOOP_INDEX=$((LOOP_INDEX + 1)) && version_prompt_val+="%F{$AM_FADE_COLOR}[%f"
           version_prompt_val+="$(am_rbenv_version)"
         fi
+      elif [[ ${_v} == "XCENV" ]]; then
+        if [[ "$(am_xcenv_version)" != *"system"* ]]; then
+          [[ ${LOOP_INDEX} != "0" ]] && version_prompt_val+="%F{$AM_FADE_COLOR}${AM_VERSION_PROMPT_SEP}%f"
+          [[ ${LOOP_INDEX} == "0" ]] && LOOP_INDEX=$((LOOP_INDEX + 1)) && version_prompt_val+="%F{$AM_FADE_COLOR}[%f"
+          version_prompt_val+="$(am_xcenv_version)"
+        fi
       else
       [[ ${LOOP_INDEX} != "0" ]] && version_prompt_val+="%F{$AM_FADE_COLOR}${AM_VERSION_PROMPT_SEP}%f"
       [[ ${LOOP_INDEX} == "0" ]] && LOOP_INDEX=$((LOOP_INDEX + 1)) && version_prompt_val+="%F{$AM_FADE_COLOR}[%f"

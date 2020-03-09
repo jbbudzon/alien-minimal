@@ -20,6 +20,7 @@ if [[ ${AM_USE_NERD_FONT} = 1 ]]; then
   [[ -z "${AM_HG_SYM}" ]]         && AM_HG_SYM=''
   [[ -z "${AM_SSH_SYM}" ]]        && AM_SSH_SYM=' '
   [[ -z "${AM_JAVA_SYM}" ]]       && AM_JAVA_SYM=' '
+  [[ -z "${AM_XC_SYM}" ]]         && AM_XC_SYM=' '
   [[ -z "${AM_PY_SYM}" ]]         && AM_PY_SYM=' '
   [[ -z "${AM_RB_SYM}" ]]         && AM_RB_SYM=' '
   [[ -z "${AM_GO_SYM}" ]]         && AM_GO_SYM='豈'
@@ -36,6 +37,7 @@ if [[ ${AM_USE_NERD_FONT} = 1 ]]; then
 fi
 
 [[ -z "${AM_JAVA_SYM}" ]]    && AM_JAVA_SYM='JAVA:'
+[[ -z "${AM_XC_SYM}" ]]      && AM_XC_SYM='XC:'
 [[ -z "${AM_PY_SYM}" ]]      && AM_PY_SYM='PY:'
 [[ -z "${AM_RB_SYM}" ]]      && AM_RB_SYM='RB:'
 [[ -z "${AM_GO_SYM}" ]]      && AM_GO_SYM='GO:'

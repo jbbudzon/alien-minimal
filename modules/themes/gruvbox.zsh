@@ -28,4 +28,5 @@ am_theme(){
   [[ -z ${AM_PROMPT_END_TAG_COLOR} ]]   && AM_PROMPT_END_TAG_COLOR=12
   [[ -z ${AM_GIT_TRACKED_COLOR} ]]      && AM_GIT_TRACKED_COLOR=10
   [[ -z ${AM_GIT_UN_TRACKED_COLOR} ]]   && AM_GIT_UN_TRACKED_COLOR=1
+  [[ -z ${AM_XC_COLOR} ]]               && AM_XC_COLOR=4
 }
