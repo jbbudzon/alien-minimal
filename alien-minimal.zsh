@@ -30,6 +30,7 @@ source "${THEME_ROOT}/modules/ssh.zsh"
 source "${THEME_ROOT}/modules/async.zsh"
 source "${THEME_ROOT}/modules/versions.zsh"
 source "${THEME_ROOT}/modules/bgjobs.zsh"
+source "${THEME_ROOT}/modules/bgtmux.zsh"
 
 [[ ${AM_ENABLE_VI_PROMPT} == 1 ]] && source "${THEME_ROOT}/modules/viprompt.zsh"
 

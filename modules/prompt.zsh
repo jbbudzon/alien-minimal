@@ -105,7 +105,7 @@ am_r_prompt_render(){
 am_l_prompt_render(){
   cd "${1}" || return
   __import_env "${2}"
-  l_prompt_val=" $(am_bgjobs_st) $(am_ssh_st) $(am_venv) $(am_prompt_dir) "
+  l_prompt_val=" $(am_tmux_st) $(am_bgjobs_st) $(am_ssh_st) $(am_venv) $(am_prompt_dir) "
   if [[ ${AM_ENABLE_VI_PROMPT} == 1 ]]; then
     # shellcheck disable=SC2016
     [[ ${AM_VI_PROMPT_POS} == 'left_start' ]] && l_prompt_val='${AM_VI_PROMPT_VAL}'"${l_prompt_val}"

@@ -29,4 +29,5 @@ am_theme(){
   [[ -z ${AM_GIT_TRACKED_COLOR} ]]      && AM_GIT_TRACKED_COLOR=10
   [[ -z ${AM_GIT_UN_TRACKED_COLOR} ]]   && AM_GIT_UN_TRACKED_COLOR=1
   [[ -z ${AM_XC_COLOR} ]]               && AM_XC_COLOR=4
+  [[ -z ${AM_TMUX_COLOR} ]]             && AM_TMUX_COLOR=2
 }

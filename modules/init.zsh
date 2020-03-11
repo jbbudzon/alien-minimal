@@ -21,6 +21,7 @@ if [[ ${AM_USE_NERD_FONT} = 1 ]]; then
   [[ -z "${AM_SSH_SYM}" ]]        && AM_SSH_SYM=' '
   [[ -z "${AM_JAVA_SYM}" ]]       && AM_JAVA_SYM=' '
   [[ -z "${AM_XC_SYM}" ]]         && AM_XC_SYM=' '
+  [[ -z "${AM_TMUX_SYM}" ]]       && AM_TMUX_SYM='舘'
   [[ -z "${AM_PY_SYM}" ]]         && AM_PY_SYM=' '
   [[ -z "${AM_RB_SYM}" ]]         && AM_RB_SYM=' '
   [[ -z "${AM_GO_SYM}" ]]         && AM_GO_SYM='豈'
@@ -50,6 +51,7 @@ fi
 [[ -z "${AM_HG_SYM}" ]]      && AM_HG_SYM='H'
 [[ -z "${AM_SVN_SYM}" ]]     && AM_SVN_SYM='S'
 [[ -z "${AM_SSH_SYM}" ]]     && AM_SSH_SYM='[S]'
+[[ -z "${AM_TMUX_SYM}" ]]    && AM_TMUX_SYM='[T]'
 
 [[ -z "${AM_GIT_REBASING_SYMBOL}" ]] && AM_GIT_REBASING_SYMBOL='⇋'
 [[ -z "${AM_GIT_PUSH_SYM}" ]]        && AM_GIT_PUSH_SYM='↑'
