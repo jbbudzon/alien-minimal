@@ -18,7 +18,7 @@
 if [[ ${AM_USE_NERD_FONT} = 1 ]]; then
   [[ -z "${AM_GIT_SYM}" ]]        && AM_GIT_SYM=''
   [[ -z "${AM_HG_SYM}" ]]         && AM_HG_SYM=''
-  [[ -z "${AM_SSH_SYM}" ]]        && AM_SSH_SYM=''
+  [[ -z "${AM_SSH_SYM}" ]]        && AM_SSH_SYM=' '
   [[ -z "${AM_JAVA_SYM}" ]]       && AM_JAVA_SYM=' '
   [[ -z "${AM_PY_SYM}" ]]         && AM_PY_SYM=' '
   [[ -z "${AM_RB_SYM}" ]]         && AM_RB_SYM=' '
