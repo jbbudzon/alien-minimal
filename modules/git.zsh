@@ -34,13 +34,13 @@ am_git_dirty(){
   __new=$(plib_git_status_new "$__git_status")
 
   DIRTY=''
-  [[ "$__add_t" != "0" ]]  && DIRTY+="%F{$AM_GIT_TRACKED_COLOR}${AM_GIT_ADD_SYM}%f "
-  [[ "$__add_ut" != "0" ]] && DIRTY+="%F{$AM_GIT_UN_TRACKED_COLOR}${AM_GIT_ADD_SYM}%f "
-  [[ "$__mod_t" != "0" ]]  && DIRTY+="%F{$AM_GIT_TRACKED_COLOR}${AM_GIT_MOD_SYM}%f "
-  [[ "$__mod_ut" != "0" ]] && DIRTY+="%F{$AM_GIT_UN_TRACKED_COLOR}${AM_GIT_MOD_SYM}%f "
-  [[ "$__del_t" != "0" ]]  && DIRTY+="%F{$AM_GIT_TRACKED_COLOR}${AM_GIT_DEL_SYM}%f "
-  [[ "$__del_ut" != "0" ]] && DIRTY+="%F{$AM_GIT_UN_TRACKED_COLOR}${AM_GIT_DEL_SYM}%f "
-  [[ "$__new" != "0" ]]    && DIRTY+="%F{$AM_GIT_UN_TRACKED_COLOR}${AM_GIT_NEW_SYM}%f "
+  [[ "$__add_t" != "0" ]]  && DIRTY+="%F{$AM_GIT_TRACKED_COLOR}${AM_GIT_ADD_SYM}%f"
+  [[ "$__add_ut" != "0" ]] && DIRTY+="%F{$AM_GIT_UN_TRACKED_COLOR}${AM_GIT_ADD_SYM}%f"
+  [[ "$__mod_t" != "0" ]]  && DIRTY+="%F{$AM_GIT_TRACKED_COLOR}${AM_GIT_MOD_SYM}%f"
+  [[ "$__mod_ut" != "0" ]] && DIRTY+="%F{$AM_GIT_UN_TRACKED_COLOR}${AM_GIT_MOD_SYM}%f"
+  [[ "$__del_t" != "0" ]]  && DIRTY+="%F{$AM_GIT_TRACKED_COLOR}${AM_GIT_DEL_SYM}%f"
+  [[ "$__del_ut" != "0" ]] && DIRTY+="%F{$AM_GIT_UN_TRACKED_COLOR}${AM_GIT_DEL_SYM}%f"
+  [[ "$__new" != "0" ]]    && DIRTY+="%F{$AM_GIT_UN_TRACKED_COLOR}${AM_GIT_NEW_SYM}%f"
 
   echo "${DIRTY}"
 
