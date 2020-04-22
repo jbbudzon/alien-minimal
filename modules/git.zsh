@@ -5,11 +5,13 @@ am_is_git(){
 }
 
 am_git_branch(){
-  echo -ne "%B%F{$AM_BRANCH_COLOR}$(plib_git_branch)%f%b"
+  VAL="$(plib_git_branch)"
+  [[ ! -z "${VAL}" ]] && echo -ne "%B%F{$AM_BRANCH_COLOR}${VAL}%f%b "
 }
 
 am_git_rev(){
-  echo -ne "%F{$AM_REV_COLOR}$(plib_git_rev)%f"
+  VAL="$(plib_git_rev)"
+  [[ ! -z "${VAL}" ]] && echo -ne "%F{$AM_REV_COLOR}${VAL}%f "
 }
 
 am_git_dirty(){
@@ -34,15 +36,15 @@ am_git_dirty(){
   __new=$(plib_git_status_new "$__git_status")
 
   DIRTY=''
-  [[ "$__add_t" != "0" ]]  && DIRTY+="%F{$AM_GIT_TRACKED_COLOR}${AM_GIT_ADD_SYM}%f "
-  [[ "$__add_ut" != "0" ]] && DIRTY+="%F{$AM_GIT_UN_TRACKED_COLOR}${AM_GIT_ADD_SYM}%f "
-  [[ "$__mod_t" != "0" ]]  && DIRTY+="%F{$AM_GIT_TRACKED_COLOR}${AM_GIT_MOD_SYM}%f "
-  [[ "$__mod_ut" != "0" ]] && DIRTY+="%F{$AM_GIT_UN_TRACKED_COLOR}${AM_GIT_MOD_SYM}%f "
-  [[ "$__del_t" != "0" ]]  && DIRTY+="%F{$AM_GIT_TRACKED_COLOR}${AM_GIT_DEL_SYM}%f "
-  [[ "$__del_ut" != "0" ]] && DIRTY+="%F{$AM_GIT_UN_TRACKED_COLOR}${AM_GIT_DEL_SYM}%f "
-  [[ "$__new" != "0" ]]    && DIRTY+="%F{$AM_GIT_UN_TRACKED_COLOR}${AM_GIT_NEW_SYM}%f "
+  [[ "$__add_t" != "0" ]]  && DIRTY+="%F{$AM_GIT_TRACKED_COLOR}${AM_GIT_ADD_SYM}%f"
+  [[ "$__add_ut" != "0" ]] && DIRTY+="%F{$AM_GIT_UN_TRACKED_COLOR}${AM_GIT_ADD_SYM}%f"
+  [[ "$__mod_t" != "0" ]]  && DIRTY+="%F{$AM_GIT_TRACKED_COLOR}${AM_GIT_MOD_SYM}%f"
+  [[ "$__mod_ut" != "0" ]] && DIRTY+="%F{$AM_GIT_UN_TRACKED_COLOR}${AM_GIT_MOD_SYM}%f"
+  [[ "$__del_t" != "0" ]]  && DIRTY+="%F{$AM_GIT_TRACKED_COLOR}${AM_GIT_DEL_SYM}%f"
+  [[ "$__del_ut" != "0" ]] && DIRTY+="%F{$AM_GIT_UN_TRACKED_COLOR}${AM_GIT_DEL_SYM}%f"
+  [[ "$__new" != "0" ]]    && DIRTY+="%F{$AM_GIT_UN_TRACKED_COLOR}${AM_GIT_NEW_SYM}%f"
 
-  echo "${DIRTY}"
+  [[ ! -z "${DIRTY}" ]] && echo -n "${DIRTY} "
 
   unset __mod_ut __new_ut __add_ut __mod_t __new_t __add_t __del DIRTY
 }
@@ -61,23 +63,24 @@ am_git_left_right(){
   [[ "$__push" != 0 ]] && [[ "$__push" != '' ]] && __pushpull+="${__push}${AM_GIT_PUSH_SYM}"
 
   if [[ "$__pushpull" != '' ]]; then
-    echo -ne "%F{$AM_LEFT_RIGHT_COLOR}${__pushpull}%f"
+    echo -ne "%F{$AM_LEFT_RIGHT_COLOR}${__pushpull}%f "
   fi
 }
 
 am_git_stash(){
   if [[ "$(plib_git_is_bare)" == 1 ]]; then
-    echo -ne "%F{$AM_BARE_COLOR}${AM_GIT_BARE_SYM}${__stash}%f"
+    echo -ne "%F{$AM_BARE_COLOR}${AM_GIT_BARE_SYM}${__stash}%f "
   else
     __stash=$(plib_git_stash)
     if [[ "$__stash" != "0" ]]; then
-      echo -ne "%F{$AM_STASH_COLOR}${AM_GIT_STASH_SYM}${__stash}%f"
+      echo -ne "%F{$AM_STASH_COLOR}${AM_GIT_STASH_SYM}${__stash}%f "
     fi
   fi
 }
 
 am_git_commit_time(){
-  echo -ne "%F{$AM_COMMIT_SINCE_COLOR}[$(plib_git_commit_since)]%f"
+  VAL="$(plib_git_commit_since)"
+  [[ ! -z "${VAL}" ]] && echo -ne "%F{$AM_COMMIT_SINCE_COLOR}[${VAL}]%f "
 }
 
 am_git_rebasing(){

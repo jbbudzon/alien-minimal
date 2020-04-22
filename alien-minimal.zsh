@@ -46,7 +46,6 @@ function precmd(){
   else
     __AM_ENVS="$(env | grep --color=never "${AM_VERSIONS_REGEX}")"
     PROMPT="$(am_l_prompt_render "${PWD}" "${__AM_ENVS}")"
-    PROMPT="$(echo "${PROMPT}" | tr -s ' ')"
   fi
 
   [[ ${AM_KEEP_PROMPT} != 1 ]] && RPROMPT=""

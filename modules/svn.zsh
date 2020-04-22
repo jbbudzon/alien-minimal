@@ -5,5 +5,6 @@ am_is_svn(){
 }
 
 am_svn_rev(){
-  echo -n "%B%F{$AM_REV_COLOR}$(plib_svn_rev)%f%b";
+  VAL="$(plib_svn_rev)"
+  [[ ! -z "${VAL}" ]] && echo -n "%B%F{$AM_REV_COLOR}${VAL}%f%b "
 }

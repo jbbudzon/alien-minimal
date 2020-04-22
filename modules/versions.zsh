@@ -5,7 +5,7 @@
 am_venv(){
   __venv=$(plib_venv)
   if [[ ${__venv} != "" ]];	then
-    echo -ne " %F{$AM_VENV_COLOR}$(plib_venv)%f"
+    echo -ne "%F{$AM_VENV_COLOR}$(plib_venv)%f "
   else
     echo -ne ""
   fi

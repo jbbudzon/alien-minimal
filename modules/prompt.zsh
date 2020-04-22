@@ -58,18 +58,18 @@ version_prompt(){
       fi
     done
 
-    [[ "$LOOP_INDEX" != "0" ]] && version_prompt_val+="%F{$AM_FADE_COLOR}]%f"
+    [[ "$LOOP_INDEX" != "0" ]] && version_prompt_val+="%F{$AM_FADE_COLOR}]%f "
   fi
   echo -n "${version_prompt_val}"
 }
 
 am_vcs_prompt(){
   if [[ $(am_is_git) == 1 ]]; then
-    am_vcs_prompt_val="$(am_git_rebasing) %F{$AM_VCS_COLOR}${AM_GIT_SYM}:%f$(am_git_branch) $(am_git_commit_time) $(am_git_rev) $(am_git_stash) $(am_git_left_right) $(am_git_dirty)"
+    am_vcs_prompt_val="$(am_git_rebasing)%F{$AM_VCS_COLOR}${AM_GIT_SYM}%f$(am_git_branch)$(am_git_commit_time)$(am_git_rev)$(am_git_stash)$(am_git_left_right)$(am_git_dirty)"
   elif [[ $(am_is_hg) == 1 ]]; then
-    am_vcs_prompt_val="%F{$AM_VCS_COLOR} ${AM_HG_SYM}:%f$(am_hg_branch) $(am_hg_rev)"
+    am_vcs_prompt_val="%F{$AM_VCS_COLOR}${AM_HG_SYM}%f$(am_hg_branch)$(am_hg_rev)"
   elif [[ $(am_is_svn) == 1 ]]; then
-    am_vcs_prompt_val="%F{$AM_VCS_COLOR} ${AM_SVN_SYM}:%f$(am_svn_rev)"
+    am_vcs_prompt_val="%F{$AM_VCS_COLOR}${AM_SVN_SYM}%f$(am_svn_rev)"
   fi
   echo -n "${am_vcs_prompt_val}"
 }
@@ -86,12 +86,13 @@ am_prompt_dir(){
     echo -ne "%(?.%F{$AM_NORMAL_COLOR}%${AM_DIR_EXPANSION_LEVEL}~%f${end_tag}.%F{$AM_ERROR_COLOR}%B%${AM_DIR_EXPANSION_LEVEL}~%b%f${end_tag})"
   fi
   [[ ${AM_HIDE_EXIT_CODE} -ne 1 ]] && echo -ne "%(?.. %F{$AM_FADE_COLOR}%?%f)"
+  echo -ne " "
 }
 
 am_r_prompt_render(){
   cd "${1}" || return
   __import_env "${2}"
-  r_prompt_val="$(version_prompt "${3}") $(am_vcs_prompt)"
+  r_prompt_val="$(version_prompt "${3}")$(am_vcs_prompt)"
   if [[ ${AM_ENABLE_VI_PROMPT} == 1 ]]; then
     # shellcheck disable=SC2016
     [[ ${AM_VI_PROMPT_POS} == 'right_start' ]] && r_prompt_val='${AM_VI_PROMPT_VAL}'"${r_prompt_val}"
@@ -105,12 +106,12 @@ am_r_prompt_render(){
 am_l_prompt_render(){
   cd "${1}" || return
   __import_env "${2}"
-  l_prompt_val=" $(am_tmux_st) $(am_bgjobs_st) $(am_ssh_st) $(am_venv) $(am_prompt_dir) "
+  l_prompt_val=" $(am_tmux_st)$(am_bgjobs_st)$(am_ssh_st)$(am_venv)$(am_prompt_dir)"
   if [[ ${AM_ENABLE_VI_PROMPT} == 1 ]]; then
     # shellcheck disable=SC2016
     [[ ${AM_VI_PROMPT_POS} == 'left_start' ]] && l_prompt_val='${AM_VI_PROMPT_VAL}'"${l_prompt_val}"
     # shellcheck disable=SC2016
-    [[ ${AM_VI_PROMPT_POS} == 'left_end' ]] && l_prompt_val="${l_prompt_val}"'${AM_VI_PROMPT_VAL} '
+    [[ ${AM_VI_PROMPT_POS} == 'left_end' ]] && l_prompt_val="${l_prompt_val}"'${AM_VI_PROMPT_VAL}'
   fi
   [[ "${AM_INITIAL_LINE_FEED}" == 1 ]] && l_prompt_val=$'\n'"${l_prompt_val}"
   unset AM_EMPTY_BUFFER

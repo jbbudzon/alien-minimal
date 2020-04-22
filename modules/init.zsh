@@ -10,16 +10,16 @@
 
 [[ -z "${AM_DIR_EXPANSION_LEVEL}" ]] && AM_DIR_EXPANSION_LEVEL=1
 
-[[ -z "${AM_GIT_STASH_SYM}" ]] && AM_GIT_STASH_SYM='@'
-[[ -z "${AM_GIT_BARE_SYM}" ]]  && AM_GIT_BARE_SYM='☢'
+[[ -z "${AM_GIT_BARE_SYM}" ]]  && AM_GIT_BARE_SYM='☢ '
 
 [[ -z "${AM_VERSION_PROMPT_SEP}" ]] && AM_VERSION_PROMPT_SEP='|'
 
 if [[ ${AM_USE_NERD_FONT} = 1 ]]; then
-  [[ -z "${AM_GIT_SYM}" ]]        && AM_GIT_SYM=''
-  [[ -z "${AM_HG_SYM}" ]]         && AM_HG_SYM=''
+  [[ -z "${AM_GIT_STASH_SYM}" ]]  && AM_GIT_STASH_SYM=' ' # START   END
+  [[ -z "${AM_GIT_SYM}" ]]        && AM_GIT_SYM=' '
+  [[ -z "${AM_HG_SYM}" ]]         && AM_HG_SYM=' '
   [[ -z "${AM_SSH_SYM}" ]]        && AM_SSH_SYM=' '
-  [[ -z "${AM_JAVA_SYM}" ]]       && AM_JAVA_SYM=' '
+  [[ -z "${AM_JAVA_SYM}" ]]       && AM_JAVA_SYM=''
   [[ -z "${AM_XC_SYM}" ]]         && AM_XC_SYM=' '
   [[ -z "${AM_TMUX_SYM}" ]]       && AM_TMUX_SYM='舘'
   [[ -z "${AM_PY_SYM}" ]]         && AM_PY_SYM=' '
@@ -29,13 +29,14 @@ if [[ ${AM_USE_NERD_FONT} = 1 ]]; then
   [[ -z "${AM_ELIXIR_SYM}" ]]     && AM_ELIXIR_SYM=' '
   [[ -z "${AM_CRYSTAL_SYM}" ]]    && AM_CRYSTAL_SYM='ﲹ '
 
-  [[ -z "${AM_GIT_ADD_SYM}" ]]  && AM_GIT_ADD_SYM=''
-  [[ -z "${AM_GIT_DEL_SYM}" ]]  && AM_GIT_DEL_SYM=''
-  [[ -z "${AM_GIT_MOD_SYM}" ]]  && AM_GIT_MOD_SYM=''
-  [[ -z "${AM_GIT_NEW_SYM}" ]]  && AM_GIT_NEW_SYM=''
+  [[ -z "${AM_GIT_ADD_SYM}" ]]  && AM_GIT_ADD_SYM=' '
+  [[ -z "${AM_GIT_DEL_SYM}" ]]  && AM_GIT_DEL_SYM=' '
+  [[ -z "${AM_GIT_MOD_SYM}" ]]  && AM_GIT_MOD_SYM=' '
+  [[ -z "${AM_GIT_NEW_SYM}" ]]  && AM_GIT_NEW_SYM=' '
   [[ -z "${AM_GIT_PUSH_SYM}" ]] && AM_GIT_PUSH_SYM=''
   [[ -z "${AM_GIT_PULL_SYM}" ]] && AM_GIT_PULL_SYM=''
 fi
+[[ -z "${AM_GIT_STASH_SYM}" ]] && AM_GIT_STASH_SYM='@'
 
 [[ -z "${AM_JAVA_SYM}" ]]    && AM_JAVA_SYM='JAVA:'
 [[ -z "${AM_XC_SYM}" ]]      && AM_XC_SYM='XC:'
