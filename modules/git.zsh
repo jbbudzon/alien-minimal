@@ -5,13 +5,11 @@ am_is_git(){
 }
 
 am_git_branch(){
-  VAL="$(plib_git_branch)"
-  [[ ! -z "${VAL}" ]] && echo -ne "%B%F{$AM_BRANCH_COLOR}${VAL}%f%b "
+  echo -ne "%B%F{$AM_BRANCH_COLOR}$(plib_git_branch)%f%b "
 }
 
 am_git_rev(){
-  VAL="$(plib_git_rev)"
-  [[ ! -z "${VAL}" ]] && echo -ne "%F{$AM_REV_COLOR}${VAL}%f "
+  echo -ne "%F{$AM_REV_COLOR}$(plib_git_rev)%f "
 }
 
 am_git_dirty(){
@@ -79,8 +77,7 @@ am_git_stash(){
 }
 
 am_git_commit_time(){
-  VAL="$(plib_git_commit_since)"
-  [[ ! -z "${VAL}" ]] && echo -ne "%F{$AM_COMMIT_SINCE_COLOR}[${VAL}]%f "
+  echo -ne "%F{$AM_COMMIT_SINCE_COLOR}[$(plib_git_commit_since)]%f "
 }
 
 am_git_rebasing(){
