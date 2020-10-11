@@ -7,7 +7,7 @@ am_tmux_st(){
     echo -ne ""
   else
     echo -n "%F{$AM_TMUX_COLOR}"
-    for (( iter = 0 ; iter < ${VAL} ; ++iter )); do
+    for (( iter = 0 ; iter < VAL ; ++iter )); do
       echo -n "${AM_TMUX_SYM}"
     done
     echo -n "%f "
