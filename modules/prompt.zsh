@@ -94,37 +94,23 @@ am_prompt_dir(){
 
 am_r_prompt_render(){
   cd "${1}" || return
+  [[ ${AM_ENABLE_VI_PROMPT} == 1 ]] && [[ ${AM_VI_PROMPT_POS} == 'right_start' ]] && echo -n '${AM_VI_PROMPT_VAL}'
   version_prompt "${3}"
   am_vcs_prompt
-  if [[ ${AM_ENABLE_VI_PROMPT} == 1 ]]; then
-    # shellcheck disable=SC2016
-    if [[ ${AM_VI_PROMPT_POS} == 'right_start' ]]; then
-      echo -n '${AM_VI_PROMPT_VAL}'"${r_prompt_val}"
-    # shellcheck disable=SC2016
-    elif [[ ${AM_VI_PROMPT_POS} == 'right_end' ]]; then
-      echo -n "${r_prompt_val}"'${AM_VI_PROMPT_VAL}'
-    fi
-  fi
+  [[ ${AM_ENABLE_VI_PROMPT} == 1 ]] && [[ ${AM_VI_PROMPT_POS} == 'right_end' ]] && echo -n '${AM_VI_PROMPT_VAL}'
   unset AM_EMPTY_BUFFER
 }
 
 am_l_prompt_render(){
   cd "${1}" || return
+  [[ "${AM_INITIAL_LINE_FEED}" == 1 ]] && echo -n $'\n'
   echo -n " "
+  [[ ${AM_ENABLE_VI_PROMPT} == 1 ]] && [[ ${AM_VI_PROMPT_POS} == 'left_start' ]] && echo -n '${AM_VI_PROMPT_VAL}'
   am_tmux_st
   am_bgjobs_st
   am_ssh_st
   am_venv
   am_prompt_dir
-  if [[ ${AM_ENABLE_VI_PROMPT} == 1 ]]; then
-    # shellcheck disable=SC2016
-    if [[ ${AM_VI_PROMPT_POS} == 'left_start' ]]; then
-      echo -n '${AM_VI_PROMPT_VAL}'"${l_prompt_val}"
-    # shellcheck disable=SC2016
-    elif [[ ${AM_VI_PROMPT_POS} == 'left_end' ]]; then
-      echo -n "${l_prompt_val}"'${AM_VI_PROMPT_VAL}'
-    fi
-  fi
-  [[ "${AM_INITIAL_LINE_FEED}" == 1 ]] && echo -n $'\n'"${l_prompt_val}"
+  [[ ${AM_ENABLE_VI_PROMPT} == 1 ]] && [[ ${AM_VI_PROMPT_POS} == 'left_end' ]] && echo -n '${AM_VI_PROMPT_VAL}'
   unset AM_EMPTY_BUFFER
 }
