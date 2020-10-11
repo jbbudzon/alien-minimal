@@ -4,15 +4,6 @@
 # shellcheck disable=SC2034
 # shellcheck disable=SC2116
 
-__import_env() {
-  if [[ -z "${1}" ]]; then
-    return
-  fi
-  echo "${1}" | while IFS='\n' read -r line; do
-    eval "export $(echo "${line}" | awk -F'=' '{print $1"=\""$2"\""}')" > /dev/null
-  done
-}
-
 version_prompt(){
   if [[ -n ${1} ]]; then
     LOOP_INDEX=0
@@ -103,7 +94,6 @@ am_prompt_dir(){
 
 am_r_prompt_render(){
   cd "${1}" || return
-  __import_env "${2}"
   version_prompt "${3}"
   am_vcs_prompt
   if [[ ${AM_ENABLE_VI_PROMPT} == 1 ]]; then
@@ -120,7 +110,6 @@ am_r_prompt_render(){
 
 am_l_prompt_render(){
   cd "${1}" || return
-  __import_env "${2}"
   echo -n " "
   am_tmux_st
   am_bgjobs_st
