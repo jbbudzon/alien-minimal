@@ -1,7 +1,5 @@
 #!/usr/bin/env zsh
 
-# shellcheck disable=SC2154
-
 am_venv(){
   __venv=$(plib_venv)
   if [[ ${__venv} != "" ]];	then
@@ -85,10 +83,11 @@ am_php_short_version(){
 
 am_xcenv_version(){
   # note: xcenv doesnt handle system version-name very well
+  local VERSION
   if [[ "$(xcenv version)" == *"set by system"* ]]; then
-    local VERSION="system"
+    VERSION="system"
   else
-    local VERSION="$(basename $(xcenv version-name) | sed 's/\.app$//')"
+    VERSION="$(basename "$(xcenv version-name)" | sed 's/\.app$//')"
   fi
   echo -ne "%F{$AM_XC_COLOR}${AM_XC_SYM}${VERSION}%f"
 }

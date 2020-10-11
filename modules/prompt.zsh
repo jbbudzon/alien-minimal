@@ -1,13 +1,10 @@
 #!/usr/bin/env zsh
 
-# shellcheck disable=SC2154
-# shellcheck disable=SC2034
-# shellcheck disable=SC2116
-
 version_prompt(){
   if [[ -n ${1} ]]; then
     LOOP_INDEX=0
     #todo this can be optimized to avoid echo and subshell
+    # shellcheck disable=SC2116
     for _v in $(echo "${1}"); do
       if [[ ${_v} == "PYENV" ]]; then
         VAL="$(am_pyenv_version)"
@@ -94,9 +91,11 @@ am_prompt_dir(){
 
 am_r_prompt_render(){
   cd "${1}" || return
+  # shellcheck disable=SC2016
   [[ ${AM_ENABLE_VI_PROMPT} == 1 ]] && [[ ${AM_VI_PROMPT_POS} == 'right_start' ]] && echo -n '${AM_VI_PROMPT_VAL}'
   version_prompt "${3}"
   am_vcs_prompt
+  # shellcheck disable=SC2016
   [[ ${AM_ENABLE_VI_PROMPT} == 1 ]] && [[ ${AM_VI_PROMPT_POS} == 'right_end' ]] && echo -n '${AM_VI_PROMPT_VAL}'
   unset AM_EMPTY_BUFFER
 }
@@ -105,12 +104,14 @@ am_l_prompt_render(){
   cd "${1}" || return
   [[ "${AM_INITIAL_LINE_FEED}" == 1 ]] && echo -n $'\n'
   echo -n " "
+  # shellcheck disable=SC2016
   [[ ${AM_ENABLE_VI_PROMPT} == 1 ]] && [[ ${AM_VI_PROMPT_POS} == 'left_start' ]] && echo -n '${AM_VI_PROMPT_VAL}'
   am_tmux_st
   am_bgjobs_st
   am_ssh_st
   am_venv
   am_prompt_dir
+  # shellcheck disable=SC2016
   [[ ${AM_ENABLE_VI_PROMPT} == 1 ]] && [[ ${AM_VI_PROMPT_POS} == 'left_end' ]] && echo -n '${AM_VI_PROMPT_VAL}'
   unset AM_EMPTY_BUFFER
 }

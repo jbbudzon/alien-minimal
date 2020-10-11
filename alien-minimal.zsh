@@ -1,10 +1,10 @@
 #!/usr/bin/env zsh
 
 # shellcheck disable=SC2034
-# shellcheck disable=SC2088
+# shellcheck disable=SC1090
 
 if [[ -f ~/.amrc ]]; then
-  source ~/.amrc
+  source "$HOME/.amrc"
 else
   echo
   print -P "%F{red}    ===> '~/.amrc' file not found, creating dummy '~/.amrc' file ... %f"

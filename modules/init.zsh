@@ -1,7 +1,5 @@
 #!/usr/bin/env zsh
 
-# shellcheck disable=SC2034
-
 [[ -z "${AM_VERSIONS_REGEX}" ]] && AM_VERSIONS_REGEX="ENV_VERSION=\|^VIRTUAL_ENV=\|^AM_"
 
 [[ -z "${AM_VIM_INSERT_SYM}" ]] && AM_VIM_INSERT_SYM='(i)'

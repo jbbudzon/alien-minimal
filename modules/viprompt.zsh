@@ -1,7 +1,5 @@
 #!/usr/bin/env zsh
 
-# shellcheck disable=SC2034
-
 am_prompt_symbol_ins(){
   echo -ne "%B%F{$AM_VIINS_COLOR}${AM_VIM_INSERT_SYM}%f%b"
 }

@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+# shellcheck disable=SC1090
+
 THEME_DIR="${0:A:h}/themes"
 
 am_load_theme(){
