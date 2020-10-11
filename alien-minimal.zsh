@@ -32,10 +32,11 @@ source "${THEME_ROOT}/modules/versions.zsh"
 
 [[ ${AM_ENABLE_VI_PROMPT} == 1 ]] && source "${THEME_ROOT}/modules/viprompt.zsh"
 
+autoload -U add-zsh-hook
+setopt prompt_subst
+am_load_theme
+
 function precmd(){
-  autoload -U add-zsh-hook
-  setopt prompt_subst
-  am_load_theme
   [[ ${AM_ENABLE_VI_PROMPT} == 1 ]] && am_render_vi_mode
 
   if [[ ${AM_ASYNC_L_PROMPT} == 1 ]]; then
