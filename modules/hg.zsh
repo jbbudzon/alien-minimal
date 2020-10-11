@@ -5,11 +5,9 @@ am_is_hg(){
 }
 
 am_hg_branch(){
-  VAL="$(plib_hg_branch)"
-  [[ ! -z "${VAL}" ]] && echo -ne "%B%F{$AM_BRANCH_COLOR}${VAL}%f%b "
+  echo -ne "%B%F{$AM_BRANCH_COLOR}$(plib_hg_branch)%f%b "
 }
 
 am_hg_rev(){
-  VAL="$(plib_hg_rev)"
-  [[ ! -z "${VAL}" ]] && echo -ne "%F{$AM_REV_COLOR}${VAL}%f "
+  echo -ne "%F{$AM_REV_COLOR}$(plib_hg_rev)%f "
 }
