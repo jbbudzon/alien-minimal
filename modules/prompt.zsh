@@ -16,62 +16,74 @@ __import_env() {
 version_prompt(){
   if [[ -n ${1} ]]; then
     LOOP_INDEX=0
+    #todo this can be optimized to avoid echo and subshell
     for _v in $(echo "${1}"); do
       if [[ ${_v} == "PYENV" ]]; then
-        if [[ "$(am_pyenv_version)" != *"system"* ]]; then
-          [[ ${LOOP_INDEX} != "0" ]] && version_prompt_val+="%F{$AM_FADE_COLOR}${AM_VERSION_PROMPT_SEP}%f"
-          [[ ${LOOP_INDEX} == "0" ]] && LOOP_INDEX=$((LOOP_INDEX + 1)) && version_prompt_val+="%F{$AM_FADE_COLOR}[%f"
-          version_prompt_val+="$(am_pyenv_version)"
+        VAL="$(am_pyenv_version)"
+        if [[ "${VAL}" != *"system"* ]]; then
+          [[ ${LOOP_INDEX} != "0" ]] && echo -n "%F{$AM_FADE_COLOR}${AM_VERSION_PROMPT_SEP}%f"
+          [[ ${LOOP_INDEX} == "0" ]] && LOOP_INDEX=$((LOOP_INDEX + 1)) && echo -n "%F{$AM_FADE_COLOR}[%f"
+          echo -n "${VAL}"
         fi
       elif [[ ${_v} == "RBENV" ]]; then
-        if [[ "$(am_rbenv_version)" != *"system"* ]]; then
-          [[ ${LOOP_INDEX} != "0" ]] && version_prompt_val+="%F{$AM_FADE_COLOR}${AM_VERSION_PROMPT_SEP}%f"
-          [[ ${LOOP_INDEX} == "0" ]] && LOOP_INDEX=$((LOOP_INDEX + 1)) && version_prompt_val+="%F{$AM_FADE_COLOR}[%f"
-          version_prompt_val+="$(am_rbenv_version)"
+        VAL="$(am_rbenv_version)"
+        if [[ "${VAL}" != *"system"* ]]; then
+          [[ ${LOOP_INDEX} != "0" ]] && echo -n "%F{$AM_FADE_COLOR}${AM_VERSION_PROMPT_SEP}%f"
+          [[ ${LOOP_INDEX} == "0" ]] && LOOP_INDEX=$((LOOP_INDEX + 1)) && echo -n "%F{$AM_FADE_COLOR}[%f"
+          echo -n "${VAL}"
         fi
       elif [[ ${_v} == "XCENV" ]]; then
-        if [[ "$(am_xcenv_version)" != *"system"* ]]; then
-          [[ ${LOOP_INDEX} != "0" ]] && version_prompt_val+="%F{$AM_FADE_COLOR}${AM_VERSION_PROMPT_SEP}%f"
-          [[ ${LOOP_INDEX} == "0" ]] && LOOP_INDEX=$((LOOP_INDEX + 1)) && version_prompt_val+="%F{$AM_FADE_COLOR}[%f"
-          version_prompt_val+="$(am_xcenv_version)"
+        VAL="$(am_xcenv_version)"
+        if [[ "${VAL}" != *"system"* ]]; then
+          [[ ${LOOP_INDEX} != "0" ]] && echo -n "%F{$AM_FADE_COLOR}${AM_VERSION_PROMPT_SEP}%f"
+          [[ ${LOOP_INDEX} == "0" ]] && LOOP_INDEX=$((LOOP_INDEX + 1)) && echo -n "%F{$AM_FADE_COLOR}[%f"
+          echo -n "${VAL}"
         fi
       else
-      [[ ${LOOP_INDEX} != "0" ]] && version_prompt_val+="%F{$AM_FADE_COLOR}${AM_VERSION_PROMPT_SEP}%f"
-      [[ ${LOOP_INDEX} == "0" ]] && LOOP_INDEX=$((LOOP_INDEX + 1)) && version_prompt_val+="%F{$AM_FADE_COLOR}[%f"
+      [[ ${LOOP_INDEX} != "0" ]] && echo -n "%F{$AM_FADE_COLOR}${AM_VERSION_PROMPT_SEP}%f"
+      [[ ${LOOP_INDEX} == "0" ]] && LOOP_INDEX=$((LOOP_INDEX + 1)) && echo -n "%F{$AM_FADE_COLOR}[%f"
 
-      [[ ${_v} == "PYTHON" ]]    && version_prompt_val+="$(am_python_version)"
-      [[ ${_v} == "PYTHON_S" ]]  && version_prompt_val+="$(am_python_short_version)"
-      [[ ${_v} == "RUBY" ]]      && version_prompt_val+="$(am_ruby_version)"
-      [[ ${_v} == "RUBY_S" ]]    && version_prompt_val+="$(am_ruby_short_version)"
-      [[ ${_v} == "JAVA" ]]      && version_prompt_val+="$(am_java_version)"
-      [[ ${_v} == "JAVA_S" ]]    && version_prompt_val+="$(am_java_short_version)"
-      [[ ${_v} == "GO" ]]        && version_prompt_val+="$(am_go_version)"
-      [[ ${_v} == "GO_S" ]]      && version_prompt_val+="$(am_go_short_version)"
-      [[ ${_v} == "ELIXIR" ]]    && version_prompt_val+="$(am_elixir_version)"
-      [[ ${_v} == "ELIXIR_S" ]]  && version_prompt_val+="$(am_elixir_short_version)"
-      [[ ${_v} == "CRYSTAL" ]]   && version_prompt_val+="$(am_crystal_version)"
-      [[ ${_v} == "CRYSTAL_S" ]] && version_prompt_val+="$(am_crystal_short_version)"
-      [[ ${_v} == "NODE" ]]      && version_prompt_val+="$(am_node_version)"
-      [[ ${_v} == "NODE_S" ]]    && version_prompt_val+="$(am_node_short_version)"
-      [[ ${_v} == "PHP" ]]       && version_prompt_val+="$(am_php_version)"
-      [[ ${_v} == "PHP_S" ]]     && version_prompt_val+="$(am_php_short_version)"
+      [[ ${_v} == "PYTHON" ]]    && am_python_version
+      [[ ${_v} == "PYTHON_S" ]]  && am_python_short_version
+      [[ ${_v} == "RUBY" ]]      && am_ruby_version
+      [[ ${_v} == "RUBY_S" ]]    && am_ruby_short_version
+      [[ ${_v} == "JAVA" ]]      && am_java_version
+      [[ ${_v} == "JAVA_S" ]]    && am_java_short_version
+      [[ ${_v} == "GO" ]]        && am_go_version
+      [[ ${_v} == "GO_S" ]]      && am_go_short_version
+      [[ ${_v} == "ELIXIR" ]]    && am_elixir_version
+      [[ ${_v} == "ELIXIR_S" ]]  && am_elixir_short_version
+      [[ ${_v} == "CRYSTAL" ]]   && am_crystal_version
+      [[ ${_v} == "CRYSTAL_S" ]] && am_crystal_short_version
+      [[ ${_v} == "NODE" ]]      && am_node_version
+      [[ ${_v} == "NODE_S" ]]    && am_node_short_version
+      [[ ${_v} == "PHP" ]]       && am_php_version
+      [[ ${_v} == "PHP_S" ]]     && am_php_short_version
       fi
     done
 
-    [[ "$LOOP_INDEX" != "0" ]] && version_prompt_val+="%F{$AM_FADE_COLOR}]%f "
+    [[ "$LOOP_INDEX" != "0" ]] && echo -n "%F{$AM_FADE_COLOR}]%f "
   fi
-  echo -n "${version_prompt_val}"
 }
 
 am_vcs_prompt(){
   if [[ $(am_is_git) == 1 ]]; then
-    am_vcs_prompt_val="$(am_git_rebasing)%F{$AM_VCS_COLOR}${AM_GIT_SYM}%f$(am_git_branch)$(am_git_commit_time)$(am_git_rev)$(am_git_stash)$(am_git_left_right)$(am_git_dirty)"
+    am_git_rebasing
+    echo -n "%F{$AM_VCS_COLOR}${AM_GIT_SYM}%f"
+    am_git_branch
+    am_git_commit_time
+    am_git_rev
+    am_git_stash
+    am_git_left_right
+    am_git_dirty
   elif [[ $(am_is_hg) == 1 ]]; then
-    am_vcs_prompt_val="%F{$AM_VCS_COLOR}${AM_HG_SYM}%f$(am_hg_branch)$(am_hg_rev)"
+    echo -n "%F{$AM_VCS_COLOR}${AM_HG_SYM}%f"
+    am_hg_branch
+    am_hg_rev
   elif [[ $(am_is_svn) == 1 ]]; then
-    am_vcs_prompt_val="%F{$AM_VCS_COLOR}${AM_SVN_SYM}%f$(am_svn_rev)"
+    echo -n "%F{$AM_VCS_COLOR}${AM_SVN_SYM}%f"
+    am_svn_rev
   fi
-  echo -n "${am_vcs_prompt_val}"
 }
 
 am_prompt_dir(){
@@ -92,28 +104,38 @@ am_prompt_dir(){
 am_r_prompt_render(){
   cd "${1}" || return
   __import_env "${2}"
-  r_prompt_val="$(version_prompt "${3}")$(am_vcs_prompt)"
+  version_prompt "${3}"
+  am_vcs_prompt
   if [[ ${AM_ENABLE_VI_PROMPT} == 1 ]]; then
     # shellcheck disable=SC2016
-    [[ ${AM_VI_PROMPT_POS} == 'right_start' ]] && r_prompt_val='${AM_VI_PROMPT_VAL}'"${r_prompt_val}"
+    if [[ ${AM_VI_PROMPT_POS} == 'right_start' ]]; then
+      echo -n '${AM_VI_PROMPT_VAL}'"${r_prompt_val}"
     # shellcheck disable=SC2016
-    [[ ${AM_VI_PROMPT_POS} == 'right_end' ]] && r_prompt_val="${r_prompt_val}"'${AM_VI_PROMPT_VAL}'
+    elif [[ ${AM_VI_PROMPT_POS} == 'right_end' ]]; then
+      echo -n "${r_prompt_val}"'${AM_VI_PROMPT_VAL}'
+    fi
   fi
   unset AM_EMPTY_BUFFER
-  echo -n "${r_prompt_val}"
 }
 
 am_l_prompt_render(){
   cd "${1}" || return
   __import_env "${2}"
-  l_prompt_val=" $(am_tmux_st)$(am_bgjobs_st)$(am_ssh_st)$(am_venv)$(am_prompt_dir)"
+  echo -n " "
+  am_tmux_st
+  am_bgjobs_st
+  am_ssh_st
+  am_venv
+  am_prompt_dir
   if [[ ${AM_ENABLE_VI_PROMPT} == 1 ]]; then
     # shellcheck disable=SC2016
-    [[ ${AM_VI_PROMPT_POS} == 'left_start' ]] && l_prompt_val='${AM_VI_PROMPT_VAL}'"${l_prompt_val}"
+    if [[ ${AM_VI_PROMPT_POS} == 'left_start' ]]; then
+      echo -n '${AM_VI_PROMPT_VAL}'"${l_prompt_val}"
     # shellcheck disable=SC2016
-    [[ ${AM_VI_PROMPT_POS} == 'left_end' ]] && l_prompt_val="${l_prompt_val}"'${AM_VI_PROMPT_VAL}'
+    elif [[ ${AM_VI_PROMPT_POS} == 'left_end' ]]; then
+      echo -n "${l_prompt_val}"'${AM_VI_PROMPT_VAL}'
+    fi
   fi
-  [[ "${AM_INITIAL_LINE_FEED}" == 1 ]] && l_prompt_val=$'\n'"${l_prompt_val}"
+  [[ "${AM_INITIAL_LINE_FEED}" == 1 ]] && echo -n $'\n'"${l_prompt_val}"
   unset AM_EMPTY_BUFFER
-  echo -n "${l_prompt_val}"
 }

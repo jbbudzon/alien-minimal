@@ -4,7 +4,7 @@
 
 r_prompt_completed(){
 #  exec &>/dev/tty
-  RPROMPT=$(echo "${3}" | tr -s ' ')
+  RPROMPT=${3}
   zle && zle reset-prompt
 }
 
@@ -19,7 +19,7 @@ am_async_r_prompt(){
 
 l_prompt_completed(){
 #  exec &>/dev/tty
-  PROMPT=$(echo "${3}" | tr -s ' ')
+  PROMPT=${3}
   zle && zle reset-prompt
 }
 

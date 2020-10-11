@@ -39,13 +39,10 @@ setopt prompt_subst
 am_load_theme
 
 function precmd(){
-  [[ ${AM_ENABLE_VI_PROMPT} == 1 ]] && am_render_vi_mode
-
   if [[ ${AM_ASYNC_L_PROMPT} == 1 ]]; then
     am_async_l_prompt
   else
-    __AM_ENVS="$(env | grep --color=never "${AM_VERSIONS_REGEX}")"
-    PROMPT="$(am_l_prompt_render "${PWD}" "${__AM_ENVS}")"
+    PROMPT="$(am_l_prompt_render "${PWD}")"
   fi
 
   [[ ${AM_KEEP_PROMPT} != 1 ]] && RPROMPT=""
