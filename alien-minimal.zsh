@@ -37,6 +37,7 @@ source "${THEME_ROOT}/modules/bgtmux.zsh"
 autoload -U add-zsh-hook
 setopt prompt_subst
 am_load_theme
+RPROMPT=""
 
 function precmd(){
   if [[ ${AM_ASYNC_L_PROMPT} == 1 ]]; then
