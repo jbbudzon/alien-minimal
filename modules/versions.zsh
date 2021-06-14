@@ -84,10 +84,14 @@ am_php_short_version(){
 am_xcenv_version(){
   # note: xcenv doesnt handle system version-name very well
   local VERSION
+  local XC_COLOR
   if [[ "$(xcenv version)" == *"set by system"* ]]; then
-    VERSION="system"
+    # VERSION="system"
+    VERSION="$(basename "$(xcenv version-name)" | sed 's/\.app$//')"
+    XC_COLOR="${AM_XCSYS_COLOR}"
   else
     VERSION="$(basename "$(xcenv version-name)" | sed 's/\.app$//')"
+    XC_COLOR="${AM_XC_COLOR}"
   fi
-  echo -ne "%F{$AM_XC_COLOR}${AM_XC_SYM}${VERSION}%f"
+  echo -ne "%F{$XC_COLOR}${AM_XC_SYM}${VERSION}%f"
 }
